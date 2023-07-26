@@ -1,0 +1,25 @@
+function solution(bridge_length, weight, truck_weights) {
+    let answer = 0;
+    let bridge = [];
+    let bridge_w = 0;
+    
+    while (truck_weights.length > 0) {
+        answer++;
+        
+        if (bridge.length == bridge_length) {
+            bridge_w -= bridge.shift();
+        }
+        
+        if (bridge_w + truck_weights[0] > weight) {
+            bridge.push(0);
+            continue;
+        }
+        
+        let truck_weight = truck_weights.shift();
+        bridge.push(truck_weight);
+        bridge_w += truck_weight;
+    }
+        answer += bridge_length;
+
+        return answer;
+}
